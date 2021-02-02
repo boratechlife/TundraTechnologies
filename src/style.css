@@ -1,4 +1,14 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Open%20Sans%3A400%2C%7CPlayfair%20Display%20SC%3A400%2C%7CLato%3A700%2C100%7CSource%20Sans%20Pro%3A200&display=swap');
 @tailwind base;
 @tailwind components;
+.splide__arrow--prev {
+    left: -.9em !important;
+}
+
+@screen lg {
+    .splide__arrow--prev {
+        left: -2em !important;
+    }
+}
+
 @tailwind utilities;

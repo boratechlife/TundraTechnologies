@@ -8,6 +8,10 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
 
+
+    <!-- Alphine js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/2.3.0/alpine.js" integrity="sha512-nIwdJlD5/vHj23CbO2iHCXtsqzdTTx3e3uAmpTm4x2Y8xCIFyWu4cSIV8GaGe2UNVq86/1h9EgUZy7tn243qdA==" crossorigin="anonymous" defer></script>
+
     <!-- splide Slider assets -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/css/splide.min.css">
     <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/js/splide.min.js"></script>
@@ -27,35 +31,40 @@
     </style>
 </head>
 
-<body>
-    <header class="w-full
-    ">
-        <div class="w-full container mx-auto px-4  lg:px-24 py-2 hidden lg:flex items-center justify-between ">
-            <div class="logo">
-                <img src="img/img/logo-332x54.png" />
+<body x-data="{atTop:true,open:false}">
+    <header class="w-full top-0" :class="{'lg:fixed bg-white shadow-md' : !atTop}" @scroll.window="atTop = (window.pageYOffset > 20 ) ? false : true">
+        <div class="w-full container mx-auto    lg:px-24 py-2 flex items-center flex-wrap justify-between ">
+
+            <div class="logo w-1/2 lg:w-auto mx-4">
+                <img src="img/img/logo-332x54.png">
             </div>
 
-            <ul class="flex space-x-4 mb-4 text-gray-800 ">
-                <li><a href="">Home</a></li>
-                <li><a href="">About Us</a></li>
-                <li><a href="">Services</a></li>
-                <li><a href="">Portfolio</a></li>
-                <li><a href="">Contact</a></li>
+            <div class="lg:hidden mx-4 " @click="open=!open">
+                <svg x-show="!open" xmlns="http://www.w3.org/2000/svg" class="inline mr-3" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="display: none;"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+                <svg x-show="open" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            </div>
+
+            <!-- Mobile Menu -->
+
+            <ul :class="{'h-0 lg:h-auto overflow-hidden' : !open}" class="mt-4 lg:mt-0 w-full lg:divide-y-0  lg:space-y-0 lg:w-auto lg:space-x-4 mb-4 bg-white lg:bg-transparent text-gray-800 lg:relative top-auto lg:flex flex-col lg:flex-row">
+                <li class="py-3 px-2 bg-gray-100 lg:bg-transparent border-b lg:border-none"><a href="">Home</a></li>
+                <li class="py-3 px-2 bg-gray-100 lg:bg-transparent border-b lg:border-none"><a href="">About Us</a></li>
+                <li class="py-3 px-2 bg-gray-100 lg:bg-transparent border-b lg:border-none"><a href="">Services</a></li>
+                <li class="py-3 px-2 bg-gray-100 lg:bg-transparent border-b lg:border-none"><a href="">Portfolio</a></li>
+                <li class="py-3 px-2 bg-gray-100 lg:bg-transparent border-b lg:border-none"><a href="">Contact</a></li>
             </ul>
         </div>
-
-
     </header>
 
-    </header>
-    <section class="bg h-72" style="background: url(img/img/Fall-Color-Alpine-Lake-Alaska-Range-Mountain-Peaks-Autumn-Season-492319362_6048x4032.jpeg);">
+
+    <section class="bg lg:h-72" style="background: url(img/img/Fall-Color-Alpine-Lake-Alaska-Range-Mountain-Peaks-Autumn-Season-492319362_6048x4032.jpeg);">
         <div class="container mx-auto">
-            <div class="flex  items-center justify-between h-full w-full">
+            <div class="flex  items-center flex-wrap justify-center h-full w-10/12 mx-auto">
                 <div class="w-full lg:w-1/2">
                     <div class="flex items-center py-10 font-sans space-x-4">
-                        <span class="w-20 border-b border-white"></span>
-                        <h4 class="text-3xl lg:text-6xl font-bold text-white">Our Portfolio</h4>
-                        <span class="w-20 border-b border-white"></span>
+                        <span class="hidden lg:block w-20 border-b border-white"></span>
+                        <h4 class="text-6xl text-center lg:text-left lg:text-6xl font-bold text-white">Our Portfolio</h4>
+                        <span class=" hidden  text-justify lg:block w-20 border-b border-white"></span>
                     </div>
                     <div class="text-2xl font-semibold text-white">
                         <p>Tke a look at some of our completed projects</p>
@@ -73,25 +82,25 @@
 
 
     <section class="py-10">
-        <div class="container mx-auto lg:px-24">
+        <div class="container mx-auto px-4 lg:px-24">
             <div class="wrapper w-full">
                 <div class="item  flex justify-between items-center flex-wrap my-8">
-                    <div class="w-1/2 p-2">
+                    <div class="w-full lg:w-1/2 p-2">
                         <img src="img/img/alaska-peony-growers-association.png" class="h-full w-full object-cover" alt="">
                     </div>
-                    <div class="w-1/2 p-2">
+                    <div class="w-full lg:w-1/2 p-2">
                         <div class="flex flex-col">
                             <div>
-                                <h5 class="text-gray-500 text-2xl uppercase mb-2">A RECENT PROJECT</h5>
-                                <h5 class="text-gray-900 font-bold text-2xl uppercase mb-5">alaska peony growers association</h5>
-                                <hr class="border-t-2 border-gray-500 w-1/5">
+                                <h5 class="text-gray-500 text-2xl uppercase mb-2 text-center lg:text-left">A RECENT PROJECT</h5>
+                                <h5 class="text-gray-900 font-bold text-2xl uppercase mb-5 text-center lg:text-left">alaska peony growers association</h5>
+                                <hr class="border-t-2 border-gray-500 w-1/5 mx-auto lg:mx-0">
                             </div>
-                            <div class="my-8 text-gray-800">
+                            <div class="my-8 text-gray-800 text-center lg:text-left">
                                 <p>Alaska is unique in its ability to grow spectacular peonies, at a time of year they are unavailable elsewhere. &nbsp;The Alaska Peony Growers website was built to market the brand of Alaska Peonies to the world. &nbsp;It
                                     also features a full featured member management system, and a complex members only content area.</p>
                             </div>
                             <div>
-                                <button class=" bg-primary text-white px-3 py-4 flex item-center uppercase">
+                                <button class="   bg-primary text-white px-3 py-4 mx-auto rounded lg:mx-0 flex items-center uppercase">
                                     <i class="fas fa-angle-double-right mr-3"></i>
                                     <span>Visit Website</span>
                                 </button>
@@ -99,25 +108,25 @@
                         </div>
                     </div>
                 </div>
-                <hr class="border-t-2 border-gray-600 border-opacity-50">
+                <hr class="border-t-2 border-gray-600 border-opacity-20">
                 <div class="item flex justify-between flex-row-reverse items-center flex-wrap my-8">
-                    <div class="w-1/2 p-2">
+                    <div class="w-full lg:w-1/2 p-2">
                         <img src="img/img/alaska-peony-growers-association.png" class="h-full w-full object-cover" alt="">
                     </div>
-                    <div class="w-1/2 p-2">
+                    <div class="w-full lg:w-1/2 p-2">
                         <div class="flex flex-col">
                             <div>
-                                <h5 class="text-gray-500 text-2xl uppercase mb-2">A RECENT PROJECT</h5>
-                                <h5 class="text-gray-900 font-bold text-2xl uppercase mb-5">alaska peony growers association</h5>
-                                <hr class="border-t-2 border-gray-500 w-1/5">
+                                <h5 class="text-gray-500 text-2xl uppercase mb-2 text-center lg:text-left">A RECENT PROJECT</h5>
+                                <h5 class="text-gray-900 font-bold text-2xl uppercase mb-5 text-center lg:text-left">alaska peony growers association</h5>
+                                <hr class="border-t-2 border-gray-500 w-1/5 mx-auto lg:mx-0">
                             </div>
-                            <div class="my-8 text-gray-800">
+                            <div class="my-8 text-gray-800 text-center lg:text-left">
                                 <p>Alaska is unique in its ability to grow spectacular peonies, at a time of year they are unavailable elsewhere. &nbsp;The Alaska Peony Growers website was built to market the brand of Alaska Peonies to the world. &nbsp;It
                                     also features a full featured member management system, and a complex members only content area.</p>
                             </div>
                             <div>
-                                <button class=" bg-primary text-white px-3 py-4 flex item-center uppercase">
-                                    <i class="fas fa-angle-double-right mr-3"></i>
+                                <button class="  bg-primary text-white px-3 py-4 mx-auto rounded lg:mx-0 flex item-center uppercase">
+                                 
                                     <span>Visit Website</span>
                                 </button>
                             </div>
@@ -125,51 +134,51 @@
                     </div>
                 </div>
 
-                <hr class="border-t-2 border-gray-600 border-opacity-50">
+                <hr class="border-t-2 border-gray-600 border-opacity-20">
 
                 <div class="item  flex justify-between items-center flex-wrap my-8">
-                    <div class="w-1/2 p-2">
+                    <div class="w-full lg:w-1/2 p-2">
                         <img src="img/img/alaska-peony-growers-association.png" class="h-full w-full object-cover" alt="">
                     </div>
-                    <div class="w-1/2 p-2">
+                    <div class="w-full lg:w-1/2 p-2">
                         <div class="flex flex-col">
                             <div>
-                                <h5 class="text-gray-500 text-2xl uppercase mb-2">A RECENT PROJECT</h5>
-                                <h5 class="text-gray-900 font-bold text-2xl uppercase mb-5">alaska peony growers association</h5>
-                                <hr class="border-t-2 border-gray-500 w-1/5">
+                                <h5 class="text-gray-500 text-2xl uppercase mb-2 text-center lg:text-left">A RECENT PROJECT</h5>
+                                <h5 class="text-gray-900 font-bold text-2xl uppercase mb-5 text-center lg:text-left">alaska peony growers association</h5>
+                                <hr class="border-t-2 border-gray-500 w-1/5 mx-auto lg:mx-0">
                             </div>
-                            <div class="my-8 text-gray-800">
+                            <div class="my-8 text-gray-800 text-center lg:text-left">
                                 <p>Alaska is unique in its ability to grow spectacular peonies, at a time of year they are unavailable elsewhere. &nbsp;The Alaska Peony Growers website was built to market the brand of Alaska Peonies to the world. &nbsp;It
                                     also features a full featured member management system, and a complex members only content area.</p>
                             </div>
                             <div>
-                                <button class=" bg-primary text-white px-3 py-4 flex item-center uppercase">
-                                    <i class="fas fa-angle-double-right mr-3"></i>
+                                <button class="  bg-primary text-white px-3 py-4 mx-auto rounded lg:mx-0 flex item-center uppercase">
+                                    
                                     <span>Visit Website</span>
                                 </button>
                             </div>
                         </div>
                     </div>
                 </div>
-                <hr class="border-t-2 border-gray-600 border-opacity-50">
+                <hr class="border-t-2 border-gray-600 border-opacity-20">
                 <div class="item flex justify-between flex-row-reverse items-center flex-wrap my-8">
-                    <div class="w-1/2 p-2">
+                    <div class="w-full lg:w-1/2 p-2">
                         <img src="img/img/alaska-peony-growers-association.png" class="h-full w-full object-cover" alt="">
                     </div>
-                    <div class="w-1/2 p-2">
+                    <div class="w-full lg:w-1/2 p-2">
                         <div class="flex flex-col">
                             <div>
-                                <h5 class="text-gray-500 text-2xl uppercase mb-2">A RECENT PROJECT</h5>
-                                <h5 class="text-gray-900 font-bold text-2xl uppercase mb-5">alaska peony growers association</h5>
-                                <hr class="border-t-2 border-gray-500 w-1/5">
+                                <h5 class="text-gray-500 text-2xl uppercase mb-2 text-center lg:text-left">A RECENT PROJECT</h5>
+                                <h5 class="text-gray-900 font-bold text-2xl uppercase mb-5 text-center lg:text-left">alaska peony growers association</h5>
+                                <hr class="border-t-2 border-gray-500 w-1/5 mx-auto lg:mx-0">
                             </div>
-                            <div class="my-8 text-gray-800">
+                            <div class="my-8 text-gray-800 text-center lg:text-left">
                                 <p>Alaska is unique in its ability to grow spectacular peonies, at a time of year they are unavailable elsewhere. &nbsp;The Alaska Peony Growers website was built to market the brand of Alaska Peonies to the world. &nbsp;It
                                     also features a full featured member management system, and a complex members only content area.</p>
                             </div>
                             <div>
-                                <button class=" bg-primary text-white px-3 py-4 flex item-center uppercase">
-                                    <i class="fas fa-angle-double-right mr-3"></i>
+                                <button class="  bg-primary text-white px-3 py-4 mx-auto rounded lg:mx-0 flex item-center uppercase">
+                                 
                                     <span>Visit Website</span>
                                 </button>
                             </div>
@@ -191,64 +200,89 @@
 
             <div class="grid-wrapper my-10">
                 <div class="grid grid-cols-1 lg:grid-cols-4 gap-12">
-                    <div class="item relative">
-                        <img class="transform hover:scale-110 transition-transform duration-150" src="https://www.tundratechnologies.com/wp-content/uploads/2016/04/homerswcd-300x203.jpg" alt="">
+                    <div class="item relative" x-data="{open: false}">
+                        <a class="w-full h-full" @mouseover="open = true">
+                            <img :class="{'scale-105':open, 'scale-95': !open}" class="transform  h-full w-full transition-transform duration-150" src="https://www.tundratechnologies.com/wp-content/uploads/2016/04/homerswcd-300x203.jpg" alt="">
 
+                        </a>
+                        <p x-show="open" @mouseover.away="open = false" @mouseout="open = false" class=" scale-120 h-full w-full absolute top-0 bg-opacity-50 bg-black"></p>
                     </div>
 
-                    <div class="item relative">
-                        <img class="transform hover:scale-110 transition-transform duration-150" src="https://www.tundratechnologies.com/wp-content/uploads/2016/04/homerswcd-300x203.jpg" alt="">
-
+                    <div class="item relative" x-data="{open: false}">
+                        <a class="w-full h-full" @mouseover="open = true">
+                            <img :class="{'scale-105':open, 'scale-95': !open}" class="transform  h-full w-full transition-transform duration-150" src="https://www.tundratechnologies.com/wp-content/uploads/2016/04/homerswcd-300x203.jpg" alt="">
+                            <p x-show="open" @mouseover.away="open = false" @mouseout="open = false" :class="{'scale-110':open}" class="h-full w-full absolute top-0 bg-opacity-50 bg-black"></p>
+                        </a>
                     </div>
 
-                    <div class="item relative">
-                        <img class="transform hover:scale-110 transition-transform duration-150" src="https://www.tundratechnologies.com/wp-content/uploads/2016/04/homerswcd-300x203.jpg" alt="">
-
+                    <div class="item relative" x-data="{open: false}">
+                        <a class="w-full h-full" @mouseover="open = true">
+                            <img :class="{'scale-105':open, 'scale-95': !open}" class="transform  h-full w-full transition-transform duration-150" src="https://www.tundratechnologies.com/wp-content/uploads/2016/04/homerswcd-300x203.jpg" alt="">
+                            <p x-show="open" @mouseover.away="open = false" @mouseout="open = false" :class="{'scale-110':open}" class="h-full w-full absolute top-0 bg-opacity-50 bg-black"></p>
+                        </a>
                     </div>
 
-                    <div class="item relative">
-                        <img class="transform hover:scale-110 transition-transform duration-150" src="https://www.tundratechnologies.com/wp-content/uploads/2016/04/homerswcd-300x203.jpg" alt="">
-
+                    <div class="item relative" x-data="{open: false}">
+                        <a class="w-full h-full" @mouseover="open = true">
+                            <img :class="{'scale-105':open, 'scale-95': !open}" class="transform  h-full w-full transition-transform duration-150" src="https://www.tundratechnologies.com/wp-content/uploads/2016/04/homerswcd-300x203.jpg" alt="">
+                            <p x-show="open" @mouseover.away="open = false" @mouseout="open = false" :class="{'scale-110':open}" class="h-full w-full absolute top-0 bg-opacity-50 bg-black"></p>
+                        </a>
                     </div>
 
-                    <div class="item relative">
-                        <img class="transform hover:scale-110 transition-transform duration-150" src="https://www.tundratechnologies.com/wp-content/uploads/2016/04/homerswcd-300x203.jpg" alt="">
-
+                    <div class="item relative" x-data="{open: false}">
+                        <a class="w-full h-full" @mouseover="open = true">
+                            <img :class="{'scale-105':open, 'scale-95': !open}" class="transform  h-full w-full transition-transform duration-150" src="https://www.tundratechnologies.com/wp-content/uploads/2016/04/homerswcd-300x203.jpg" alt="">
+                            <p x-show="open" @mouseover.away="open = false" @mouseout="open = false" :class="{'scale-110':open}" class="h-full w-full absolute top-0 bg-opacity-50 bg-black"></p>
+                        </a>
                     </div>
 
-                    <div class="item relative">
-                        <img class="transform hover:scale-110 transition-transform duration-150" src="https://www.tundratechnologies.com/wp-content/uploads/2016/04/homerswcd-300x203.jpg" alt="">
-
+                    <div class="item relative" x-data="{open: false}">
+                        <a class="w-full h-full" @mouseover="open = true">
+                            <img :class="{'scale-105':open, 'scale-95': !open}" class="transform  h-full w-full transition-transform duration-150" src="https://www.tundratechnologies.com/wp-content/uploads/2016/04/homerswcd-300x203.jpg" alt="">
+                            <p x-show="open" @mouseover.away="open = false" @mouseout="open = false" :class="{'scale-110':open}" class="h-full w-full absolute top-0 bg-opacity-50 bg-black"></p>
+                        </a>
                     </div>
 
-                    <div class="item relative">
-                        <img class="transform hover:scale-110 transition-transform duration-150" src="https://www.tundratechnologies.com/wp-content/uploads/2016/04/homerswcd-300x203.jpg" alt="">
-
+                    <div class="item relative" x-data="{open: false}">
+                        <a class="w-full h-full" @mouseover="open = true">
+                            <img :class="{'scale-105':open, 'scale-95': !open}" class="transform  h-full w-full transition-transform duration-150" src="https://www.tundratechnologies.com/wp-content/uploads/2016/04/homerswcd-300x203.jpg" alt="">
+                            <p x-show="open" @mouseover.away="open = false" @mouseout="open = false" :class="{'scale-110':open}" class="h-full w-full absolute top-0 bg-opacity-50 bg-black"></p>
+                        </a>
                     </div>
 
-                    <div class="item relative">
-                        <img class="transform hover:scale-110 transition-transform duration-150" src="https://www.tundratechnologies.com/wp-content/uploads/2016/04/homerswcd-300x203.jpg" alt="">
-
+                    <div class="item relative" x-data="{open: false}">
+                        <a class="w-full h-full" @mouseover="open = true">
+                            <img :class="{'scale-105':open, 'scale-95': !open}" class="transform  h-full w-full transition-transform duration-150" src="https://www.tundratechnologies.com/wp-content/uploads/2016/04/homerswcd-300x203.jpg" alt="">
+                            <p x-show="open" @mouseover.away="open = false" @mouseout="open = false" :class="{'scale-110':open}" class="h-full w-full absolute top-0 bg-opacity-50 bg-black"></p>
+                        </a>
                     </div>
 
-                    <div class="item relative">
-                        <img class="transform hover:scale-110 transition-transform duration-150" src="https://www.tundratechnologies.com/wp-content/uploads/2016/04/homerswcd-300x203.jpg" alt="">
-
+                    <div class="item relative" x-data="{open: false}">
+                        <a class="w-full h-full" @mouseover="open = true">
+                            <img :class="{'scale-105':open, 'scale-95': !open}" class="transform  h-full w-full transition-transform duration-150" src="https://www.tundratechnologies.com/wp-content/uploads/2016/04/homerswcd-300x203.jpg" alt="">
+                            <p x-show="open" @mouseover.away="open = false" @mouseout="open = false" :class="{'scale-110':open}" class="h-full w-full absolute top-0 bg-opacity-50 bg-black"></p>
+                        </a>
                     </div>
 
-                    <div class="item relative">
-                        <img class="transform hover:scale-110 transition-transform duration-150" src="https://www.tundratechnologies.com/wp-content/uploads/2016/04/homerswcd-300x203.jpg" alt="">
-
+                    <div class="item relative" x-data="{open: false}">
+                        <a class="w-full h-full" @mouseover="open = true">
+                            <img :class="{'scale-105':open, 'scale-95': !open}" class="transform  h-full w-full transition-transform duration-150" src="https://www.tundratechnologies.com/wp-content/uploads/2016/04/homerswcd-300x203.jpg" alt="">
+                            <p x-show="open" @mouseover.away="open = false" @mouseout="open = false" :class="{'scale-110':open}" class="h-full w-full absolute top-0 bg-opacity-50 bg-black"></p>
+                        </a>
                     </div>
 
-                    <div class="item relative">
-                        <img class="transform hover:scale-110 transition-transform duration-150" src="https://www.tundratechnologies.com/wp-content/uploads/2016/04/homerswcd-300x203.jpg" alt="">
-
+                    <div class="item relative" x-data="{open: false}">
+                        <a class="w-full h-full" @mouseover="open = true">
+                            <img :class="{'scale-105':open, 'scale-95': !open}" class="transform  h-full w-full transition-transform duration-150" src="https://www.tundratechnologies.com/wp-content/uploads/2016/04/homerswcd-300x203.jpg" alt="">
+                            <p x-show="open" @mouseover.away="open = false" @mouseout="open = false" :class="{'scale-110':open}" class="h-full w-full absolute top-0 bg-opacity-50 bg-black"></p>
+                        </a>
                     </div>
 
-                    <div class="item relative">
-                        <img class="transform hover:scale-110 transition-transform duration-150" src="https://www.tundratechnologies.com/wp-content/uploads/2016/04/homerswcd-300x203.jpg" alt="">
-
+                    <div class="item relative" x-data="{open: false}">
+                        <a class="w-full h-full" @mouseover="open = true">
+                            <img :class="{'scale-105':open, 'scale-95': !open}" class="transform  h-full w-full transition-transform duration-150" src="https://www.tundratechnologies.com/wp-content/uploads/2016/04/homerswcd-300x203.jpg" alt="">
+                            <p x-show="open" @mouseover.away="open = false" @mouseout="open = false" :class="{'scale-110':open}" class="h-full w-full absolute top-0 bg-opacity-50 bg-black"></p>
+                        </a>
                     </div>
 
                 </div>
@@ -271,7 +305,7 @@
 
 
                 <div class="w-full flex flex-wrap my-8">
-                    <div class="w-1/2 p-2 text-white">
+                    <div class=" w-full lg:w-1/2 p-2 text-white">
                         <h4 class="text-3xl font-bold lg:text-4xl mb-8">Getting in touch is Easy</h4>
 
                         <div class="uabb-subheading uabb-text-editor">
@@ -282,23 +316,23 @@
                             <p>tom@tundratech.net</p>
                         </div>
                     </div>
-                    <div class="w-1/2 p-2 text-white">
+                    <div class="w-full lg:w-1/2 p-2 text-white">
                         <h4 class="text-xl ">Fill out this form to send us an Email</h4>
 
                         <form action="" class="w-full my-4">
-                            <div class="group flex  space-x-4 mb-6">
-                                <input type="text" class="w-2/5 px-3 py-2 leading-loose bg-white text-gray-800" placeholder="First Name">
-                                <input type="text" class="w-2/5 px-3 py-2 leading-loose bg-white text-gray-800" placeholder="Last Name">
+                            <div class="group flex flex-wrap lg:flex-nowrap space-y-4 lg:space-y-0 lg:space-x-4 mb-6">
+                                <input type="text" class="w-full lg:w-2/5 px-3 py-2 leading-loose bg-white text-gray-800" placeholder="First Name">
+                                <input type="text" class="w-full lg:w-2/5 px-3 py-2 leading-loose bg-white text-gray-800" placeholder="Last Name">
                             </div>
 
                             <div class="group flex  mb-6 ">
-                                <input type="text" class="w-2/5 px-3 py-2 leading-loose bg-white text-gray-800" placeholder="Phone Number">
+                                <input type="text" class="w-full lg:w-2/5 px-3 py-2 leading-loose bg-white text-gray-800" placeholder="Phone Number">
 
                             </div>
 
 
                             <div class="group flex  mb-6 ">
-                                <input type="text" class="w-2/5 px-3 py-2 leading-loose bg-white text-gray-800" placeholder="Email Address">
+                                <input type="text" class="w-full lg:w-2/5 px-3 py-2 leading-loose bg-white text-gray-800" placeholder="Email Address">
 
                             </div>
 
@@ -311,7 +345,7 @@
                             <div class="gfield_captcha_container">
                                 <img class="gfield_captcha" src="img/img/48367819.png" alt="" width="150" height="42">
                                 <div class="gfield_captcha_input_container simple_captcha_medium">
-                                    <input type="text" name="input_6" id="input_1_6" class="w-1/5 px-3 py-3 my-4 leading-loose bg-white text-gray-800" tabindex="9">
+                                    <input type="text" name="input_6" id="input_1_6" class="w-2/5 lg:w-1/5 px-3 py-3 my-4 leading-loose bg-white text-gray-800" tabindex="9">
                                     <input type="hidden" name="input_captcha_prefix_6" value="48367819"></div>
                             </div>
 
@@ -323,9 +357,16 @@
                 </div>
             </div>
         </div>
-        <div class="footer-bottom w-full bg-white">
-            <div class=" container mx-auto lg:px-24  bg-white py-2 border-t-2 b">
-                <div class="w-full flex justify-between">
+
+
+
+    </footer>
+
+    <footer class="">
+
+        <div class="container mx-auto px-4 lg:px-24">
+            <div class="footer-bottom bg-white py-2 border-t-2 b">
+                <div class="w-full flex flex-wrap  justify-center lg:justify-between items-center">
                     <small class="text-gray-500">
                 
                         © 1997-2021 Tundra Technologies						

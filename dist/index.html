@@ -9,6 +9,10 @@
     <!-- Font awesome icons cdn -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
 
+    <!-- Ultimate icons -->
+    <link rel="stylesheet" href="uafonts.css">
+    <!-- Alphine js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/2.3.0/alpine.js" integrity="sha512-nIwdJlD5/vHj23CbO2iHCXtsqzdTTx3e3uAmpTm4x2Y8xCIFyWu4cSIV8GaGe2UNVq86/1h9EgUZy7tn243qdA==" crossorigin="anonymous"></script>
     <!-- splide Slider assets -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/css/splide.min.css">
     <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/js/splide.min.js"></script>
@@ -20,25 +24,43 @@
             transform-origin: 0;
             transform: translateZ(0px);
         }
-        
-        .splide__arrow--prev {
-            left: -2em !important;
-        }
     </style>
 </head>
 
 <body>
 
     <section class="parallax-container">
-        <div class="background absolute h-screen w-full absolute top-0 bg-cover" style="background:url('img/img/IMG_583795.jpg')">
+        <div class="background  h-screen w-full absolute top-0 bg-cover" style="background:url('img/img/IMG_583795.jpg')">
 
         </div>
         <div class="foreground flex-col items-center justify-center h-screen w-full bg-black bg-opacity-50">
             <div class="container mx-auto relative h-full">
 
-                <header class="flex items-center justify-end py-4
-                    ">
-                    <ul class="flex space-x-4 mb-4 text-white ">
+                <header class="flex items-center justify-center lg:justify-end py-4
+                    " x-data="{open:false}">
+                    <div class="m-1 p-1 text-white lg:hidden" @click="open=true">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="inline mr-3" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+                        <span>Menu</span>
+                    </div>
+                    <!-- Mobile Menu Drawer -->
+
+                    <div :class="{'translate-x-0' : open, '-translate-x-full': !open  }" class="absolute lg:hidden w-3/4 transform transition-transform duration-300 ease-in-out  z-50 bg-gray-900 left-0 top-0 py-4 shadow-md h-screen">
+                        <div class="w-full flex justify-end text-gray-500 px-3">
+                            <div @click="open=false" class="appearance-none outline-none border-none"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></div>
+                        </div>
+                        <div class="h-1/2 flex flex-col justify-center">
+                            <ul class="flex lg:hidden flex-col space-y-4 items-center w-full justify-center normal-case  mb-4 text-white font-light">
+                                <li><a href="">Home</a></li>
+                                <li><a href="">About Us</a></li>
+                                <li><a href="">Services</a></li>
+                                <li><a href="">Portfolio</a></li>
+                                <li><a href="">Contact</a></li>
+                            </ul>
+
+                        </div>
+
+                    </div>
+                    <ul class="hidden lg:flex space-x-4 mb-4 text-white ">
                         <li><a href="">Home</a></li>
                         <li><a href="">About Us</a></li>
                         <li><a href="">Services</a></li>
@@ -53,18 +75,48 @@
                         <div class="flex flex-col items-center justify-center">
                             <img src="img/img/tt-logo-regular-light.png" class="w-full lg:w-auto mb-8" />
                             <div class="heading">
-                                <h2 class="uppercase text-2xl lg:text-5xl font-bold text-white mb-4">CREATIVE WEB DESIGN</h2>
-                                <h2 class="uppercase text-2xl lg:text-5xl font-bold text-white mb-4">Custom Programming</h2>
+
+                                <div class="max-w-7xl mx-auto text-center" x-data="{
+                                           text: '',
+                                           textArray : ['CREATIVE WEB DESIGN'],
+                                           textIndex: 0,
+                                           charIndex: 0,
+                                           typeSpeed: 100,
+                                        }" x-init="setInterval(function(){
+                                           let current = $data.textArray[ $data.textIndex ];
+                                           $data.text = current.substring(0, $data.charIndex);
+                                           $data.charIndex += 1;
+                                        }, $data.typeSpeed);">
+                                    <h1 class="text-4xl lg:text-6xl mb-4 text-white font-black" x-text="text"></h1>
+                                </div>
+
+
+                                <div class="max-w-7xl mx-auto text-center" x-data="{
+                                    text: '',
+                                    textArray : ['Custom Programming'],
+                                    textIndex: 0,
+                                    charIndex: 0,
+                                    typeSpeed: 500,
+                                 }" x-init="setInterval(function(){
+                                    let current = $data.textArray[ $data.textIndex ];
+                                    $data.text = current.substring(0, $data.charIndex);
+                                    $data.charIndex += 1;
+                                 }, $data.typeSpeed);">
+                                    <h1 class=" text-2xl lg:text-5xl mb-4 text-white font-black uppercase" x-text="text"></h1>
+                                </div>
+
+
+
                             </div>
                             <p class="text-white mb-8">Web Design in Homer, Alaska</p>
-                            <button class="px-4 py-3 rounded-2xl bg-secondary text-white text-center w-1/5 hover:bg-white hover:text-secondary text-xl">Contact us</button>
+                            <button class="px-4 py-3 rounded-3xl bg-secondary text-white text-center w-3/4 lg:w-1/5 hover:bg-white hover:text-secondary text-xl">Contact us</button>
                         </div>
                     </div>
                 </div>
 
-                <div class="absolute bottom-0 w-full flex items-center justify-center">
-                    <div class="h-12 w-12 rounded-full bg-white text-gray-800 flex items-center justify-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+                <div class="absolute bottom-0 pb-2 w-full flex items-center justify-center">
+                    <div class="h-16 w-16 text-4xl rounded-full bg-white text-gray-800 flex items-center justify-center">
+                        <svg class="h-16 w-16" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
                     </div>
                 </div>
             </div>
@@ -75,25 +127,25 @@
     <section class="my-10">
         <div class="container mx-auto px-4 lg:px-20 ">
             <div class="flex flex-wrap w-full">
-                <div class="w-full lg:w-1/2">
+                <div class="w-full lg:w-1/2 lg:pr-8">
                     <div class="about">
                         <div class="title">
-                            <h2 class="text-3xl lg:text-5xl font-bold text-primary mb-4">ABOUT US</h2>
-                            <hr class="border-t-2 border-secondary mb-4 w-14">
+                            <h2 class="text-3xl lg:text-5xl font-bold text-primary mb-4 text-center lg:text-left">ABOUT US</h2>
+                            <hr class="border-t-2 border-secondary mb-4 w-14 mx-auto lg:mx-0">
                         </div>
 
                     </div>
-                    <div>
+                    <div class="text-center lg:text-left">
                         <h6 class="uppercase text-sm mb-2 text-primary">Homer Alaska Web Design</h6>
                         <p class="text-xl text-gray-800 mb-4">Designing and Building high quality, professionally designed websites in Alaska, and around the country for 20 years</p>
                     </div>
-                    <div class="text-gray-600 text-lg my-4">
+                    <div class="text-gray-600 text-lg my-4 text-center lg:text-left">
                         <p>Looking for a professionally designed site for your small business, vacation rental, B&amp;B, or non-profit organization?&nbsp; We have extensive experience creating that&nbsp;<strong class="font-bold">eye-grabbing design</strong>&nbsp;to
                             bring in visitors.</p>
                     </div>
-                    <div>
+                    <div class="">
 
-                        <button class="bg-primary text-white  my-8 rounded-md w-2/5 px-4 py-3 uppercase  ">our services</button>
+                        <button class="bg-primary text-white  my-8 rounded-md w-10/12 lg:w-2/5 mx-3 lg:mx-0 px-4 py-3 uppercase  ">our services</button>
                     </div>
                 </div>
                 <div class=" w-full lg:w-1/2 ">
@@ -101,47 +153,56 @@
                         <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 row-gap-10">
 
                             <div class="item-card space-y-4">
-                                <div class="icon text-primary mb-6">
+                                <div class="icon text-primary text-center lg:text-left mb-6">
                                     <i class="fa fa-3x fa-paint-brush"></i>
                                 </div>
-                                <div class="heading">
-                                    <h3 class="text-xl font-bold uppercase"> Cusotm Design</h3>
+                                <div class="heading text-center lg:text-left">
+                                    <h3 class="text-xl font-bold uppercase"> Custom Design</h3>
                                 </div>
-                                <div class="description">
+                                <div class="description text-center lg:text-left">
                                     <p class="text-gray-600">Beautiful graphic designs, created by a professional graphic artist, just for you!</p>
                                 </div>
                             </div>
 
                             <div class="item-card space-y-4">
-                                <div class="icon text-primary mb-6">
-                                    <i class="fa fa-3x fa-paint-brush"></i>
+                                <div class="icon text-primary text-center text-6xl lg:text-left mb-6">
+                                    <i class="fa fa-wordpress"></i>
                                 </div>
-                                <div class="heading">
-                                    <h3 class="text-xl font-bold uppercase"> Cusotm Design</h3>
+                                <div class="heading text-center lg:text-left">
+                                    <h3 class="text-xl font-bold uppercase"> WordPress</h3>
                                 </div>
-                                <div class="description">
+                                <div class="description text-center lg:text-left">
                                     <p class="text-gray-600">Beautiful graphic designs, created by a professional graphic artist, just for you!</p>
                                 </div>
                             </div>
                             <div class="item-card space-y-4">
-                                <div class="icon text-primary mb-6">
-                                    <i class="fa fa-3x fa-paint-brush"></i>
+                                <div class="icon text-primary text-6xl text-center lg:text-left mb-6">
+                                    <svg class="fill-current h-16 w-16 mx-auto lg:mx-2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                        <!-- Uploaded to SVGRepo https://www.svgrepo.com -->
+                                        <title>ic_fluent_phone_laptop_24_regular</title>
+                                        <desc>Created with Sketch.</desc>
+                                        <g id="🔍-System-Icons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                            <g id="ic_fluent_phone_laptop_24_regular" fill="#2B3F72" fill-rule="nonzero">
+                                                <path d="M8.25443626,8.00300112 C9.22093457,8.00300112 10.0044363,8.78650281 10.0044363,9.75300112 L10.0044363,19.2531419 C10.0044363,20.2196402 9.22093457,21.0031419 8.25443626,21.0031419 L3.75,21.0031419 C2.78350169,21.0031419 2,20.2196402 2,19.2531419 L2,9.75300112 C2,8.78650281 2.78350169,8.00300112 3.75,8.00300112 L8.25443626,8.00300112 Z M8.25443626,9.50300112 L3.75,9.50300112 C3.61192881,9.50300112 3.5,9.61492993 3.5,9.75300112 L3.5,19.2531419 C3.5,19.3912131 3.61192881,19.5031419 3.75,19.5031419 L8.25443626,19.5031419 C8.39250745,19.5031419 8.50443626,19.3912131 8.50443626,19.2531419 L8.50443626,9.75300112 C8.50443626,9.61492993 8.39250745,9.50300112 8.25443626,9.50300112 Z M6.25221813,17 C6.66643169,17 7.00221813,17.3357864 7.00221813,17.75 C7.00221813,18.1296958 6.72006425,18.443491 6.35398869,18.4931534 L6.25221813,18.5 L5.75221813,18.5 C5.33800457,18.5 5.00221813,18.1642136 5.00221813,17.75 C5.00221813,17.3703042 5.28437201,17.056509 5.65044757,17.0068466 L5.75221813,17 L6.25221813,17 Z M21.2493746,16.4998418 C21.6635882,16.4998418 21.9993746,16.8356283 21.9993746,17.2498418 C21.9993746,17.6295376 21.7172207,17.9433328 21.3511452,17.9929952 L21.2493746,17.9998418 L11,17.9993431 L11,16.4993431 L21.2493746,16.4998418 Z M18.25,5.00034313 C19.2164983,5.00034313 20,5.78384482 20,6.75034313 L20,14.2506308 C20,15.2171291 19.2164983,16.0006308 18.25,16.0006308 L11,16.0003431 L11,14.5003431 L18.25,14.5006308 C18.3880712,14.5006308 18.5,14.388702 18.5,14.2506308 L18.5,6.75034313 C18.5,6.61227194 18.3880712,6.50034313 18.25,6.50034313 L5.75,6.50034313 C5.61192881,6.50034313 5.5,6.61227194 5.5,6.75034313 L5.499,6.99934313 L4,6.99934313 L4,6.75034313 C4,5.78384482 4.78350169,5.00034313 5.75,5.00034313 L18.25,5.00034313 Z" id="🎨-Color"/>
+                                            </g>
+                                        </g>
+                                    </svg>
                                 </div>
-                                <div class="heading">
-                                    <h3 class="text-xl font-bold uppercase"> Cusotm Design</h3>
+                                <div class="heading text-center lg:text-left">
+                                    <h3 class="text-xl font-bold uppercase"> Responsive Design</h3>
                                 </div>
-                                <div class="description">
+                                <div class="description text-center lg:text-left">
                                     <p class="text-gray-600">Beautiful graphic designs, created by a professional graphic artist, just for you!</p>
                                 </div>
                             </div>
                             <div class="item-card space-y-4">
-                                <div class="icon text-primary mb-6">
-                                    <i class="fa fa-3x fa-paint-brush"></i>
+                                <div class="icon text-primary text-center text-6xl lg:text-left mb-6">
+                                    <i class="fa fa-lock"></i>
                                 </div>
-                                <div class="heading">
-                                    <h3 class="text-xl font-bold uppercase"> Cusotm Design</h3>
+                                <div class="heading text-center lg:text-left">
+                                    <h3 class="text-xl font-bold uppercase"> Reliable Hosting</h3>
                                 </div>
-                                <div class="description">
+                                <div class="description text-center lg:text-left">
                                     <p class="text-gray-600">Beautiful graphic designs, created by a professional graphic artist, just for you!</p>
                                 </div>
                             </div>
@@ -162,7 +223,7 @@
                     <div class="splide__track">
                         <ul class="splide__list px-8">
                             <li class="splide__slide px-6">
-                                <div class="w-full flex flex-wrap justify-between">
+                                <div class="w-full flex flex-wrap-reverse justify-between">
                                     <div class="w-full lg:w-2/5">
                                         <div class="title">
                                             <h4 class="text-3xl font-bold text-primary mb-6 uppercase">The Alaska Peony Growers Association</h4>
@@ -176,13 +237,13 @@
 
                                     </div>
                                     <div class="w-full lg:w-1/2">
-                                        <img src="img/img/alaskapeonies-768x576.png" class="w-auto h-auto" alt="">
+                                        <img src="img/img/alaskapeonies-768x576.png" class="w-auto h-auto mx-auto" alt="">
                                     </div>
 
                                 </div>
                             </li>
                             <li class="splide__slide px-6">
-                                <div class="w-full flex flex-wrap justify-between">
+                                <div class="w-full flex  flex-wrap-reverse justify-between">
                                     <div class="w-full lg:w-2/5">
                                         <div class="title">
                                             <h4 class="text-3xl font-bold text-primary mb-6 uppercase">The Alaska Peony Growers Association</h4>
@@ -196,35 +257,14 @@
 
                                     </div>
                                     <div class="w-full lg:w-1/2">
-                                        <img src="img/img/alaskapeonies-768x576.png" class="w-auto h-auto" alt="">
-                                    </div>
-
-                                </div>
-                            </li>
-
-                            <li class="splide__slide px-6">
-                                <div class="w-full flex flex-wrap justify-between">
-                                    <div class="w-full lg:w-2/5">
-                                        <div class="title">
-                                            <h4 class="text-3xl font-bold text-primary mb-6 uppercase">The Alaska Peony Growers Association</h4>
-                                        </div>
-                                        <p class="description mb-8">
-                                            Alaska is unique in its ability to grow spectacular peonies, at a time of year they are unavailable elsewhere. The Alaska Peony Growers website was built to market the brand of Alaska Peonies to the world. It also features a full featured member management
-                                            system, and a complex members only content area.
-                                        </p>
-
-                                        <button class=" px-4 py-3  bg-primary rounded-md text-white">Visit site</button>
-
-                                    </div>
-                                    <div class="w-full lg:w-1/2">
-                                        <img src="img/img/alaskapeonies-768x576.png" class="w-auto h-auto" alt="">
+                                        <img src="img/img/alaskapeonies-768x576.png" class="w-auto h-auto mx-auto" alt="">
                                     </div>
 
                                 </div>
                             </li>
 
                             <li class="splide__slide px-6">
-                                <div class="w-full flex flex-wrap justify-between">
+                                <div class="w-full flex flex-wrap-reverse justify-between">
                                     <div class="w-full lg:w-2/5">
                                         <div class="title">
                                             <h4 class="text-3xl font-bold text-primary mb-6 uppercase">The Alaska Peony Growers Association</h4>
@@ -238,14 +278,14 @@
 
                                     </div>
                                     <div class="w-full lg:w-1/2">
-                                        <img src="img/img/alaskapeonies-768x576.png" class="w-auto h-auto" alt="">
+                                        <img src="img/img/alaskapeonies-768x576.png" class="w-auto h-auto mx-auto" alt="">
                                     </div>
 
                                 </div>
                             </li>
 
                             <li class="splide__slide px-6">
-                                <div class="w-full flex flex-wrap justify-between">
+                                <div class="w-full flex flex-wrap-reverse justify-between">
                                     <div class="w-full lg:w-2/5">
                                         <div class="title">
                                             <h4 class="text-3xl font-bold text-primary mb-6 uppercase">The Alaska Peony Growers Association</h4>
@@ -259,7 +299,28 @@
 
                                     </div>
                                     <div class="w-full lg:w-1/2">
-                                        <img src="img/img/alaskapeonies-768x576.png" class="w-auto h-auto" alt="">
+                                        <img src="img/img/alaskapeonies-768x576.png" class="w-auto h-auto mx-auto" alt="">
+                                    </div>
+
+                                </div>
+                            </li>
+
+                            <li class="splide__slide px-6">
+                                <div class="w-full flex flex-wrap-reverse justify-between">
+                                    <div class="w-full lg:w-2/5">
+                                        <div class="title">
+                                            <h4 class="text-3xl font-bold text-primary mb-6 uppercase">The Alaska Peony Growers Association</h4>
+                                        </div>
+                                        <p class="description mb-8">
+                                            Alaska is unique in its ability to grow spectacular peonies, at a time of year they are unavailable elsewhere. The Alaska Peony Growers website was built to market the brand of Alaska Peonies to the world. It also features a full featured member management
+                                            system, and a complex members only content area.
+                                        </p>
+
+                                        <button class=" px-4 py-3  bg-primary rounded-md text-white">Visit site</button>
+
+                                    </div>
+                                    <div class="w-full lg:w-1/2">
+                                        <img src="img/img/alaskapeonies-768x576.png" class="w-auto h-auto mx-auto" alt="">
                                     </div>
 
                                 </div>
@@ -274,52 +335,52 @@
     </section>
 
     <section class="my-10">
-        <div class="container mx-auto lg:px-20">
+        <div class="container mx-auto px-4 lg:px-20">
             <div class="title  flex items-center justify-center space-x-4 mb-8">
-                <div class="w-20 border-b-2 border-primary"></div>
+                <div class="w-5 lg:w-20 border-b-2 border-primary"></div>
                 <h4 class="text-2xl lg:text-3xl text-primary uppercase font-bold">Some of Our Clients</h4>
-                <div class="w-20 border-b-2 border-primary"></div>
+                <div class="w-5 lg:w-20 border-b-2 border-primary"></div>
             </div>
-            <div class="wrapper">
-                <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 lg:gap-6 justify-between">
-                    <div class="desc">
+            <div class="wrapper py-6">
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 justify-between">
+                    <div class="desc  text-center lg:text-left">
                         <h4 class="text-primary text-2xl  lg:text-3xl font-bold mb-6 uppercase ">Building trust since 1997</h4>
                         <p class="text-gray-600 mb-4">We have been in the web development business for 20 years. We know how important trust and reliability are, and greatly value the trust our clients have in us!</p>
                     </div>
 
                     <div>
-                        <img src="img/img/logo.png" alt="" class="w-auto h-auto">
+                        <img src="img/img/logo.png" alt="" class="w-auto h-auto mx-auto ">
                     </div>
 
                     <div>
-                        <img src="img/img/logoclr-300x166.png" alt="" class="w-auto h-auto">
+                        <img src="img/img/logoclr-300x166.png" alt="" class="w-auto h-auto mx-auto">
                     </div>
 
 
                     <div>
-                        <img src="img/img/logo-1.png" alt="" class="w-auto h-auto">
+                        <img src="img/img/logo-1.png" alt="" class="w-auto h-auto mx-auto">
                     </div>
 
                     <div>
-                        <img src="img/img/logo-4.png" alt="" class="w-auto h-auto">
+                        <img src="img/img/logo-4.png" alt="" class="w-auto h-auto mx-auto">
                     </div>
 
 
 
                     <div>
-                        <img src="img/img/logo-5.png" alt="" class="w-auto h-auto">
+                        <img src="img/img/logo-5.png" alt="" class="w-auto h-auto mx-auto">
                     </div>
 
                     <div>
-                        <img src="img/img/logo-3.png" alt="" class="w-auto h-auto">
+                        <img src="img/img/logo-3.png" alt="" class="w-auto h-auto mx-auto">
                     </div>
 
                     <div>
-                        <img src="img/img/logo-2.png" alt="" class="w-auto h-auto">
+                        <img src="img/img/logo-2.png" alt="" class="w-auto h-auto mx-auto">
                     </div>
 
                     <div>
-                        <img src="img/img/FORCE_logo_cropped.png" alt="" class="w-auto h-auto">
+                        <img src="img/img/FORCE_logo_cropped.png" alt="" class="w-auto h-auto mx-auto">
                     </div>
 
                 </div>
@@ -330,24 +391,36 @@
     <footer class="pt-20 bg-gray-200">
         <div class="footer-top">
             <div class="container mx-auto lg:px-20">
-                <div class="flex w-full">
-                    <div class="w-1/2 px-4">
-                        <h4 class=" text-2xl lg:text-3xl font-bold text-primary mb-4">Need something specific?</h4>
-                        <h4 class=" text-2xl lg:text-3xl font-bold text-primary mb-4">We will build it for you!</h4>
-                        <p class="text-gray-800">From a custom website for your business, to custom developed web applications, we can do it!</p>
+                <div class="flex flex-wrap w-full">
+                    <div class="w-full lg:w-1/2 px-4">
+                        <h4 class=" text-3xl lg:text-4xl text-center lg:text-left  font-bold text-primary mb-4">Need something specific?</h4>
+                        <h4 class=" text-3xl lg:text-4xl text-center lg:text-left font-bold text-primary mb-4">We will build it for you!</h4>
+                        <p class="text-gray-800 text-center lg:text-left">From a custom website for your business, to custom developed web applications, we can do it!</p>
                     </div>
-                    <div class="w-1/2 px-4">
+                    <div class="w-full lg:w-1/2 px-4">
                         <div class="w-full flex justify-center items-center flex-col">
-                            <h5 class="text-2xl lg:text-3xl font-bold text-gray-800 mb-8">Contact us for more information.</h5>
-                            <hr class="border-t-2 border-gray-800 w-2/3 mx-auto mb-8">
-                            <a href="" class="px-4 py-2 w-2/5 text-center uppercase text-white rounded bg-primary font-medium">Get a free quote</a>
+                            <h5 class="text-2xl lg:text-3xl font-bold text-gray-800 mb-8 text-center lg:text-left">Contact us for more information.</h5>
+                            <hr class="border-t-2 border-gray-400 w-2/3 mx-auto mb-8">
+                            <a href="" class="px-4 py-2 w-3/5 lg:w-2/5 text-center uppercase text-white rounded bg-primary font-medium">Get a free quote</a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
         <div class="spacer h-20 w-full"></div>
-        <div class="footer-bottom bg-white py-2 border-t-2 b"></div>
+        <div class="footer-bottom bg-white py-2 border-t-2 b">
+            <div class="w-full flex flex-wrap container px-4 lg:px-20 mx-auto justify-between">
+                <small class="text-gray-500">
+            
+                    © 1997-2021 Tundra Technologies						
+        </small>
+
+                <ul class="list-reset space-x-3 text-blue-500 text-sm flex font-light">
+                    <li><a href="">Terms of service</a></li>
+                    <li><a href="">Privacy Policy</a></li>
+                </ul>
+            </div>
+        </div>
     </footer>
 
 </body>

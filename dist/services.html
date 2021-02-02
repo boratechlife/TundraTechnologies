@@ -8,6 +8,11 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
 
+
+    <!-- Alphine js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/2.3.0/alpine.js" integrity="sha512-nIwdJlD5/vHj23CbO2iHCXtsqzdTTx3e3uAmpTm4x2Y8xCIFyWu4cSIV8GaGe2UNVq86/1h9EgUZy7tn243qdA==" crossorigin="anonymous" defer></script>
+
+
     <!-- splide Slider assets -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/css/splide.min.css">
     <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/js/splide.min.js"></script>
@@ -27,43 +32,46 @@
     </style>
 </head>
 
-<body>
-    <header class="w-full
-    ">
-        <div class="w-full container mx-auto px-4  lg:px-24 py-2 hidden lg:flex items-center justify-between ">
-            <div class="logo">
-                <img src="img/img/logo-332x54.png" />
+<body x-data="{atTop:true,open:false}">
+    <header class="w-full top-0" :class="{'lg:fixed bg-white shadow-md' : !atTop}" @scroll.window="atTop = (window.pageYOffset > 20 ) ? false : true">
+        <div class="w-full container mx-auto    lg:px-24 py-2 flex items-center flex-wrap justify-between ">
+
+            <div class="logo w-1/2 lg:w-auto mx-4">
+                <img src="img/img/logo-332x54.png">
             </div>
 
-            <ul class="flex space-x-4 mb-4 text-gray-800 ">
-                <li><a href="">Home</a></li>
-                <li><a href="">About Us</a></li>
-                <li><a href="">Services</a></li>
-                <li><a href="">Portfolio</a></li>
-                <li><a href="">Contact</a></li>
+            <div class="lg:hidden mx-4 " @click="open=!open">
+                <svg x-show="!open" xmlns="http://www.w3.org/2000/svg" class="inline mr-3" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="display: none;"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+                <svg x-show="open" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            </div>
+
+            <!-- Mobile Menu -->
+
+            <ul :class="{'h-0 lg:h-auto overflow-hidden' : !open}" class="mt-4 lg:mt-0 w-full lg:divide-y-0  lg:space-y-0 lg:w-auto lg:space-x-4 mb-4 bg-white lg:bg-transparent text-gray-800 lg:relative top-auto lg:flex flex-col lg:flex-row">
+                <li class="py-3 px-2 bg-gray-100 lg:bg-transparent border-b lg:border-none"><a href="">Home</a></li>
+                <li class="py-3 px-2 bg-gray-100 lg:bg-transparent border-b lg:border-none"><a href="">About Us</a></li>
+                <li class="py-3 px-2 bg-gray-100 lg:bg-transparent border-b lg:border-none"><a href="">Services</a></li>
+                <li class="py-3 px-2 bg-gray-100 lg:bg-transparent border-b lg:border-none"><a href="">Portfolio</a></li>
+                <li class="py-3 px-2 bg-gray-100 lg:bg-transparent border-b lg:border-none"><a href="">Contact</a></li>
             </ul>
         </div>
-
-
     </header>
-
-    </header>
-    <section class="bg h-72" style="background: url(https://www.tundratechnologies.com/wp-content/uploads/2016/04/Autumn-tundra-in-Alaska-Range-842369424_2560x1709.jpeg);">
+    <section class="bg lg:h-72" style="background: url(https://www.tundratechnologies.com/wp-content/uploads/2016/04/Autumn-tundra-in-Alaska-Range-842369424_2560x1709.jpeg); background-position:top -2000px ">
         <div class="container mx-auto">
-            <div class="flex  items-center justify-between h-full w-full">
+            <div class="flex  items-center flex-wrap justify-center h-full w-10/12 mx-auto">
                 <div class="w-full lg:w-1/2">
                     <div class="flex items-center py-10 font-sans space-x-4">
-                        <span class="w-20 border-b border-white"></span>
-                        <h4 class="text-3xl lg:text-6xl font-bold text-white">Our Services</h4>
-                        <span class="w-20 border-b border-white"></span>
+                        <span class="hidden lg:block w-20 border-b border-white"></span>
+                        <h4 class="text-6xl text-center lg:text-left lg:text-6xl font-bold text-white">Our Services</h4>
+                        <span class=" hidden  text-justify lg:block w-20 border-b border-white"></span>
                     </div>
                     <div class="text-2xl font-semibold text-white">
-                        <p>comprehensive Full service web development</p>
+                        <p>Comprehensive, Full Service Web Development</p>
                     </div>
                 </div>
 
                 <div class="w-1/2 flex items-end">
-                    <img src="img/img/alaska-peony-growers-association.png" class="h-64 object-fit" alt="" srcset="">
+                    <img src="img/img/smartmockups_j77ejm28.png" class="h-64 object-fit" alt="" srcset="">
                 </div>
 
             </div>
@@ -73,53 +81,63 @@
     <section class="py-10">
         <div class="container mx-auto px-4 lg:px-24">
 
-            <div class="flex items-center py-10 font-sans space-x-4">
-                <span class="w-20 border-b "></span>
-                <h4 class="text-3xl lg:text-3xl font-bold text-primary">Website Development</h4>
-                <span class="w-20 border-b "></span>
+            <div class="flex items-center justify-center  py-10 font-sans space-x-4">
+                <span class="w-5 lg:w-20 border-b border-black"></span>
+                <h4 class="text-3xl lg:text-5xl font-bold text-primary lg:mb-4">Website Development</h4>
+                <span class="w-5 lg:w-20 border-b border-black"></span>
             </div>
 
-            <div class="flex w-full justify-between">
-                <div class="p-2 w-1/3">
+            <div class="flex w-full flex-wrap justify-between items-center">
+                <div class="py-4 px-4 w-full lg:w-1/3">
                     <div class="item-card flex flex-col items-center space-y-4">
                         <div class="icon text-primary mb-6 w-full text-center">
                             <i class="fa fa-3x fa-paint-brush"></i>
                         </div>
                         <div class="heading">
-                            <h3 class="text-2xl lg:text-3xl font-bold text-primary uppercase"> Custom Design</h3>
+                            <h3 class="text-2xl lg:text-4xl mb-4 font-bold text-center text-primary uppercase">Custom Site Design</h3>
                         </div>
                         <div class="description text-gray-800">
-                            <p style="text-align: justify;">In today's mobile world, it is important for your website to display equally well on a phone, tablet, laptop, or large desktop. &nbsp;We strive to make your site beautiful and functional on any device!</p>
+                            <p style="text-align: justify;">Looking for a professionally designed site for your small business, vacation rental, B&amp;B, or non-profit organization?&nbsp; We have extensive experience creating that&nbsp;<strong>eye-grabbing design</strong>&nbsp;to bring
+                                in visitors.</p>
                         </div>
                     </div>
                 </div>
 
-                <div class="p-2 w-1/3">
+                <div class="py-4 px-6 w-full lg:w-1/3">
 
                     <div class="item-card flex flex-col items-center space-y-4">
                         <div class="icon text-primary mb-6 w-full text-center">
                             <i class="fab fa-3x fa-wordpress-simple"></i>
                         </div>
                         <div class="heading">
-                            <h3 class="text-2xl lg:text-3xl  font-bold text-primary uppercase"> Custom Design</h3>
+                            <h3 class="text-2xl lg:text-4xl  text-center font-bold text-primary uppercase">WordPress Development</h3>
                         </div>
                         <div class="description text-gray-800">
-                            <p style="text-align: justify;">In today's mobile world, it is important for your website to display equally well on a phone, tablet, laptop, or large desktop. &nbsp;We strive to make your site beautiful and functional on any device!</p>
+                            <p style="text-align: justify;">When clients wish to update their own site, we choose WordPress, a simple, flexible, popular CMS. We have many years experience developing custom themes and plugins for WordPress.</p>
                         </div>
                     </div>
                 </div>
 
-                <div class="p-2 w-1/3">
+                <div class="py-4 px-6 w-full lg:w-1/3">
 
                     <div class="item-card flex flex-col items-center space-y-4">
-                        <div class="icon text-primary mb-6 w-full text-center">
-                            <i class="fa fa-3x fa-paint-brush"></i>
+                        <div class="icon text-primary text-6xl text-center lg:text-left mb-6">
+                            <svg class="fill-current h-16 w-16 mx-auto lg:mx-2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                <!-- Uploaded to SVGRepo https://www.svgrepo.com -->
+                                <title>ic_fluent_phone_laptop_24_regular</title>
+                                <desc>Created with Sketch.</desc>
+                                <g id="🔍-System-Icons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                    <g id="ic_fluent_phone_laptop_24_regular" fill="#2B3F72" fill-rule="nonzero">
+                                        <path d="M8.25443626,8.00300112 C9.22093457,8.00300112 10.0044363,8.78650281 10.0044363,9.75300112 L10.0044363,19.2531419 C10.0044363,20.2196402 9.22093457,21.0031419 8.25443626,21.0031419 L3.75,21.0031419 C2.78350169,21.0031419 2,20.2196402 2,19.2531419 L2,9.75300112 C2,8.78650281 2.78350169,8.00300112 3.75,8.00300112 L8.25443626,8.00300112 Z M8.25443626,9.50300112 L3.75,9.50300112 C3.61192881,9.50300112 3.5,9.61492993 3.5,9.75300112 L3.5,19.2531419 C3.5,19.3912131 3.61192881,19.5031419 3.75,19.5031419 L8.25443626,19.5031419 C8.39250745,19.5031419 8.50443626,19.3912131 8.50443626,19.2531419 L8.50443626,9.75300112 C8.50443626,9.61492993 8.39250745,9.50300112 8.25443626,9.50300112 Z M6.25221813,17 C6.66643169,17 7.00221813,17.3357864 7.00221813,17.75 C7.00221813,18.1296958 6.72006425,18.443491 6.35398869,18.4931534 L6.25221813,18.5 L5.75221813,18.5 C5.33800457,18.5 5.00221813,18.1642136 5.00221813,17.75 C5.00221813,17.3703042 5.28437201,17.056509 5.65044757,17.0068466 L5.75221813,17 L6.25221813,17 Z M21.2493746,16.4998418 C21.6635882,16.4998418 21.9993746,16.8356283 21.9993746,17.2498418 C21.9993746,17.6295376 21.7172207,17.9433328 21.3511452,17.9929952 L21.2493746,17.9998418 L11,17.9993431 L11,16.4993431 L21.2493746,16.4998418 Z M18.25,5.00034313 C19.2164983,5.00034313 20,5.78384482 20,6.75034313 L20,14.2506308 C20,15.2171291 19.2164983,16.0006308 18.25,16.0006308 L11,16.0003431 L11,14.5003431 L18.25,14.5006308 C18.3880712,14.5006308 18.5,14.388702 18.5,14.2506308 L18.5,6.75034313 C18.5,6.61227194 18.3880712,6.50034313 18.25,6.50034313 L5.75,6.50034313 C5.61192881,6.50034313 5.5,6.61227194 5.5,6.75034313 L5.499,6.99934313 L4,6.99934313 L4,6.75034313 C4,5.78384482 4.78350169,5.00034313 5.75,5.00034313 L18.25,5.00034313 Z" id="🎨-Color"/>
+                                    </g>
+                                </g>
+                            </svg>
                         </div>
                         <div class="heading">
-                            <h3 class="text-2xl lg:text-3xl font-bold font-bold text-primary uppercase"> Custom Design</h3>
+                            <h3 class="text-2xl lg:text-4xl text-center  font-bold text-primary uppercase">Responsive Design</h3>
                         </div>
                         <div class="description text-gray-800">
-                            <p style="text-align: justify;">In today's mobile world, it is important for your website to display equally well on a phone, tablet, laptop, or large desktop. &nbsp;We strive to make your site beautiful and functional on any device!</p>
+                            <p style="text-align: justify;">In today's mobile world, it is important for your website to display equally well on a phone, tablet, laptop, or large desktop. We strive to make your site beautiful and functional on any device!</p>
                         </div>
                     </div>
                 </div>
@@ -131,12 +149,12 @@
 
     <section>
         <div class=" bg-cover" style='background-position: center center;background-size:cover; background-image: url("https://www.tundratechnologies.com/wp-content/uploads/2016/04/glacier-cropped.jpg") ; background-repeat: no-repeat;'>
-            <div class="container mx-auto px-4 lg:px-24">
+            <div class="container mx-auto  lg:px-24">
                 <div class="w-full lg:w-3/5 bg-white bg-opacity-80 py-10">
                     <div class="flex items-center py-6 font-sans space-x-4 w-full justify-center">
-                        <span class="w-20 border-b border-primary "></span>
+                        <span class="w-10 lg:w-20 border-b border-primary  "></span>
                         <h4 class="text-3xl lg:text-3xl font-bold text-primary">Reliable Hosting</h4>
-                        <span class="w-20 border-b border-primary "></span>
+                        <span class="w-10 lg:w-20 border-b border-primary "></span>
                     </div>
 
                     <div class="content w-full text-gray-600 text-base space-y-6 px-6">
@@ -148,8 +166,8 @@
 
                     </div>
 
-                    <div class="pricing px-6 my-10">
-                        <table class="table w-full">
+                    <div class="pricing lg:px-6 my-10">
+                        <table class="table w-11/12 mx-auto lg:mx-0 lg:w-full">
                             <thead class="bg-secondary text-white">
                                 <tr>
                                     <th></th>
@@ -205,7 +223,7 @@
 
     <section class="-mt-10">
         <div class=" bg-cover" style='background-position: center -52.7422px;background-image: url("https://www.tundratechnologies.com/wp-content/uploads/2018/06/708-main-full.jpg");background-repeat: no-repeat;background-size: cover;'>
-            <div class="container mx-auto px-4 lg:px-24 flex justify-end">
+            <div class="container mx-auto lg:px-24 flex justify-end">
                 <div class="w-full lg:w-2/5 bg-white bg-opacity-80 ">
                     <div class="flex items-center pt-6 pb-4 font-sans space-x-4 w-full justify-center">
                         <span class="w-20 border-b border-primary "></span>
@@ -234,7 +252,7 @@
     <section class="py-10 bg-grey">
         <div class="container px-4 mx-auto lg:px-20">
             <div class="heading w-full flex flex-col items-center justify-center mb-8">
-                <h4 class="text-2xl lg:text-4xl uppercase font-bold mb-8">
+                <h4 class="text-2xl lg:text-4xl uppercase text-center lg:text-left font-bold mb-8">
                     Why Choose Tundra Technologies?
                 </h4>
                 <hr class="w-32 border-t border-secondary">
@@ -257,8 +275,8 @@
                             <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
                         </div>
                         <div class="desc">
-                            <h4 class="uppercase text-primary  font-medium text-2xl  mb-4">CUSTOM SITE DESIGNS</h4>
-                            <p class="text-gray-800 my-4">We team with professional graphic artists experienced with designing for the web to give your webiste that extra 'wow' needed to make your website stand out in todays internet.</p>
+                            <h4 class="uppercase text-primary  font-medium text-2xl  mb-4">CUSTOM PROGRAMMING</h4>
+                            <p class="text-gray-800 my-4">If you are need a custom wordpress plugin, or are looking for a custom developed web application, our many years experience in web technologies will allow us to build you exactly what you need.</p>
                         </div>
                     </div>
 
@@ -268,8 +286,8 @@
                             <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
                         </div>
                         <div class="desc">
-                            <h4 class="uppercase text-primary  font-medium text-2xl  mb-4">CUSTOM SITE DESIGNS</h4>
-                            <p class="text-gray-800 my-4">We team with professional graphic artists experienced with designing for the web to give your webiste that extra 'wow' needed to make your website stand out in todays internet.</p>
+                            <h4 class="uppercase text-primary  font-medium whitespace-nowrap text-2xl  mb-4">SEARCH ENGINE OPTIMIZATION</h4>
+                            <p class="text-gray-800 my-4">When we build you site for you, we make sure and make it search engine friendly, and include whatever keywords and phrases you suggest to help make you rank higher in the search engines.</p>
                         </div>
                     </div>
 
@@ -278,8 +296,8 @@
                             <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
                         </div>
                         <div class="desc">
-                            <h4 class="uppercase text-primary  font-medium text-2xl  mb-4">CUSTOM SITE DESIGNS</h4>
-                            <p class="text-gray-800 my-4">We team with professional graphic artists experienced with designing for the web to give your webiste that extra 'wow' needed to make your website stand out in todays internet.</p>
+                            <h4 class="uppercase text-primary  font-medium text-2xl  mb-4">TIMELY SUPPORT</h4>
+                            <p class="text-gray-800 my-4">We believe that customer support is extremely important in today's world of large, impersonal corporations, and we strive to go the extra mile to make sure you are happy. </p>
                         </div>
                     </div>
 
@@ -288,11 +306,12 @@
         </div>
     </section>
 
+
     <footer class="">
 
-        <div class="container mx-auto lg:px-24">
+        <div class="container mx-auto px-4 lg:px-24">
             <div class="footer-bottom bg-white py-2 border-t-2 b">
-                <div class="w-full flex justify-between">
+                <div class="w-full flex flex-wrap  justify-center lg:justify-between items-center">
                     <small class="text-gray-500">
                 
                         © 1997-2021 Tundra Technologies						

@@ -8,6 +8,10 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
 
+
+    <!-- Alphine js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/2.3.0/alpine.js" integrity="sha512-nIwdJlD5/vHj23CbO2iHCXtsqzdTTx3e3uAmpTm4x2Y8xCIFyWu4cSIV8GaGe2UNVq86/1h9EgUZy7tn243qdA==" crossorigin="anonymous" defer></script>
+
     <!-- splide Slider assets -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/css/splide.min.css">
     <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/js/splide.min.js"></script>
@@ -39,27 +43,33 @@
     </style>
 </head>
 
-<body>
-    <header class="w-full
-    ">
-        <div class="w-full container mx-auto px-4  lg:px-24 py-2 hidden lg:flex items-center justify-between ">
-            <div class="logo">
-                <img src="img/img/logo-332x54.png" />
+<body x-data="{atTop:true,open:false}">
+    <header class="w-full top-0" :class="{'lg:fixed bg-white shadow-md' : !atTop}" @scroll.window="atTop = (window.pageYOffset > 20 ) ? false : true">
+        <div class="w-full container mx-auto    lg:px-24 py-2 flex items-center flex-wrap justify-between ">
+
+            <div class="logo w-1/2 lg:w-auto mx-4">
+                <img src="img/img/logo-332x54.png">
             </div>
 
-            <ul class="flex space-x-4 mb-4 text-gray-800 ">
-                <li><a href="">Home</a></li>
-                <li><a href="">About Us</a></li>
-                <li><a href="">Services</a></li>
-                <li><a href="">Portfolio</a></li>
-                <li><a href="">Contact</a></li>
+            <div class="lg:hidden mx-4 " @click="open=!open">
+                <svg x-show="!open" xmlns="http://www.w3.org/2000/svg" class="inline mr-3" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="display: none;"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+                <svg x-show="open" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            </div>
+
+            <!-- Mobile Menu -->
+
+            <ul :class="{'h-0 lg:h-auto overflow-hidden' : !open}" class="mt-4 lg:mt-0 w-full lg:divide-y-0  lg:space-y-0 lg:w-auto lg:space-x-4 mb-4 bg-white lg:bg-transparent text-gray-800 lg:relative top-auto lg:flex flex-col lg:flex-row">
+                <li class="py-3 px-2 bg-gray-100 lg:bg-transparent border-b lg:border-none"><a href="">Home</a></li>
+                <li class="py-3 px-2 bg-gray-100 lg:bg-transparent border-b lg:border-none"><a href="">About Us</a></li>
+                <li class="py-3 px-2 bg-gray-100 lg:bg-transparent border-b lg:border-none"><a href="">Services</a></li>
+                <li class="py-3 px-2 bg-gray-100 lg:bg-transparent border-b lg:border-none"><a href="">Portfolio</a></li>
+                <li class="py-3 px-2 bg-gray-100 lg:bg-transparent border-b lg:border-none"><a href="">Contact</a></li>
             </ul>
         </div>
-
-
     </header>
+
     <section class="hero h-64 bg-cover bg-norepeat bg-center">
-        <div class="container mx-auto">
+        <div class="container mx-auto px-4">
             <div class="flex flex-col items-center justify-center">
                 <div class="flex items-center py-10 font-sans space-x-4">
                     <span class="w-20 border-b border-white"></span>
@@ -74,7 +84,7 @@
     </section>
 
     <section>
-        <div class="container mx-auto lg:px-24">
+        <div class="container mx-auto px-4 lg:px-24">
             <div class="w-full flex flex-wrap">
                 <div class="w-full lg:w-1/2  ">
 
@@ -94,10 +104,11 @@
     </section>
 
 
+
     <section class="py-10 bg-grey">
         <div class="container px-4 mx-auto lg:px-20">
             <div class="heading w-full flex flex-col items-center justify-center mb-8">
-                <h4 class="text-2xl lg:text-4xl uppercase font-bold mb-8">
+                <h4 class="text-2xl lg:text-4xl uppercase text-center lg:text-left font-bold mb-8">
                     Why Choose Tundra Technologies?
                 </h4>
                 <hr class="w-32 border-t border-secondary">
@@ -120,8 +131,8 @@
                             <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
                         </div>
                         <div class="desc">
-                            <h4 class="uppercase text-primary  font-medium text-2xl  mb-4">CUSTOM SITE DESIGNS</h4>
-                            <p class="text-gray-800 my-4">We team with professional graphic artists experienced with designing for the web to give your webiste that extra 'wow' needed to make your website stand out in todays internet.</p>
+                            <h4 class="uppercase text-primary  font-medium text-2xl  mb-4">CUSTOM PROGRAMMING</h4>
+                            <p class="text-gray-800 my-4">If you are need a custom wordpress plugin, or are looking for a custom developed web application, our many years experience in web technologies will allow us to build you exactly what you need.</p>
                         </div>
                     </div>
 
@@ -131,8 +142,8 @@
                             <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
                         </div>
                         <div class="desc">
-                            <h4 class="uppercase text-primary  font-medium text-2xl  mb-4">CUSTOM SITE DESIGNS</h4>
-                            <p class="text-gray-800 my-4">We team with professional graphic artists experienced with designing for the web to give your webiste that extra 'wow' needed to make your website stand out in todays internet.</p>
+                            <h4 class="uppercase text-primary  font-medium whitespace-nowrap text-2xl  mb-4">SEARCH ENGINE OPTIMIZATION</h4>
+                            <p class="text-gray-800 my-4">When we build you site for you, we make sure and make it search engine friendly, and include whatever keywords and phrases you suggest to help make you rank higher in the search engines.</p>
                         </div>
                     </div>
 
@@ -141,8 +152,8 @@
                             <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
                         </div>
                         <div class="desc">
-                            <h4 class="uppercase text-primary  font-medium text-2xl  mb-4">CUSTOM SITE DESIGNS</h4>
-                            <p class="text-gray-800 my-4">We team with professional graphic artists experienced with designing for the web to give your webiste that extra 'wow' needed to make your website stand out in todays internet.</p>
+                            <h4 class="uppercase text-primary  font-medium text-2xl  mb-4">TIMELY SUPPORT</h4>
+                            <p class="text-gray-800 my-4">We believe that customer support is extremely important in today's world of large, impersonal corporations, and we strive to go the extra mile to make sure you are happy. </p>
                         </div>
                     </div>
 
@@ -153,52 +164,52 @@
 
 
     <section class="my-10">
-        <div class="container mx-auto lg:px-20">
+        <div class="container mx-auto px-4 lg:px-20">
             <div class="title  flex items-center justify-center space-x-4 mb-8">
-                <div class="w-20 border-b-2 border-primary"></div>
+                <div class="w-5 lg:w-20 border-b-2 border-primary"></div>
                 <h4 class="text-2xl lg:text-3xl text-primary uppercase font-bold">Some of Our Clients</h4>
-                <div class="w-20 border-b-2 border-primary"></div>
+                <div class="w-5 lg:w-20 border-b-2 border-primary"></div>
             </div>
-            <div class="wrapper">
-                <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 lg:gap-6 justify-between">
-                    <div class="desc">
+            <div class="wrapper py-6">
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 justify-between">
+                    <div class="desc  text-center lg:text-left">
                         <h4 class="text-primary text-2xl  lg:text-3xl font-bold mb-6 uppercase ">Building trust since 1997</h4>
                         <p class="text-gray-600 mb-4">We have been in the web development business for 20 years. We know how important trust and reliability are, and greatly value the trust our clients have in us!</p>
                     </div>
 
                     <div>
-                        <img src="img/img/logo.png" alt="" class="w-auto h-auto">
+                        <img src="img/img/logo.png" alt="" class="w-auto h-auto mx-auto ">
                     </div>
 
                     <div>
-                        <img src="img/img/logoclr-300x166.png" alt="" class="w-auto h-auto">
+                        <img src="img/img/logoclr-300x166.png" alt="" class="w-auto h-auto mx-auto">
                     </div>
 
 
                     <div>
-                        <img src="img/img/logo-1.png" alt="" class="w-auto h-auto">
+                        <img src="img/img/logo-1.png" alt="" class="w-auto h-auto mx-auto">
                     </div>
 
                     <div>
-                        <img src="img/img/logo-4.png" alt="" class="w-auto h-auto">
+                        <img src="img/img/logo-4.png" alt="" class="w-auto h-auto mx-auto">
                     </div>
 
 
 
                     <div>
-                        <img src="img/img/logo-5.png" alt="" class="w-auto h-auto">
+                        <img src="img/img/logo-5.png" alt="" class="w-auto h-auto mx-auto">
                     </div>
 
                     <div>
-                        <img src="img/img/logo-3.png" alt="" class="w-auto h-auto">
+                        <img src="img/img/logo-3.png" alt="" class="w-auto h-auto mx-auto">
                     </div>
 
                     <div>
-                        <img src="img/img/logo-2.png" alt="" class="w-auto h-auto">
+                        <img src="img/img/logo-2.png" alt="" class="w-auto h-auto mx-auto">
                     </div>
 
                     <div>
-                        <img src="img/img/FORCE_logo_cropped.png" alt="" class="w-auto h-auto">
+                        <img src="img/img/FORCE_logo_cropped.png" alt="" class="w-auto h-auto mx-auto">
                     </div>
 
                 </div>
@@ -209,9 +220,9 @@
 
     <footer class="">
 
-        <div class="container mx-auto lg:px-24">
+        <div class="container mx-auto px-4 lg:px-24">
             <div class="footer-bottom bg-white py-2 border-t-2 b">
-                <div class="w-full flex justify-between">
+                <div class="w-full flex flex-wrap  justify-center lg:justify-between items-center">
                     <small class="text-gray-500">
                 
                         © 1997-2021 Tundra Technologies						
